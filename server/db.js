@@ -1,0 +1,183 @@
+const fs = require('fs');
+const path = require('path');
+
+const DB_PATH = path.join(__dirname, '..', 'data', 'db.json');
+
+const INITIAL_DATA = {
+  products: [
+    {
+      id: 'days-7',
+      name: '7 дней',
+      durationDays: 7,
+      price: 199,
+      originalPrice: null,
+      perDay: '28 ₽ /день',
+      badge: null,
+      discountPercent: null,
+      features: [
+        'Полный функционал Spectral Client',
+        'CheatMine Bypass: Combat & Movement',
+        'Все обновления на 7 дней',
+        'Поддержка 24/7'
+      ]
+    },
+    {
+      id: 'days-30',
+      name: '30 дней',
+      durationDays: 30,
+      price: 399,
+      originalPrice: 999,
+      perDay: '13 ₽ /день',
+      badge: 'Популярный',
+      isPopular: true,
+      discountPercent: 60,
+      features: [
+        'Полный функционал Spectral Client',
+        'CheatMine Anarchy & Grief Auto-Bypass',
+        'Cloud Configs (лучшие сеты под CheatMine)',
+        'Все обновления включены',
+        'Приоритетная поддержка 24/7'
+      ]
+    },
+    {
+      id: 'days-90',
+      name: '90 дней',
+      durationDays: 90,
+      price: 799,
+      originalPrice: 2890,
+      perDay: '9 ₽ /день',
+      badge: '+1 ПК',
+      discountPercent: 72,
+      features: [
+        'Полный функционал + 1 доп. привязка ПК',
+        'CheatMine Custom Rotations & Aura',
+        'Приватные макросы для грифа и фарма',
+        'Все обновления и хотфиксы',
+        'Приоритетный саппорт в Discord'
+      ]
+    },
+    {
+      id: 'days-180',
+      name: '180 дней',
+      durationDays: 180,
+      price: 1199,
+      originalPrice: 5490,
+      perDay: '7 ₽ /день',
+      badge: '+2 ПК',
+      discountPercent: 78,
+      features: [
+        'Полный функционал + 2 доп. привязки ПК',
+        'Полный набор всех CheatMine модулей',
+        'Ранний доступ к Beta-обновлениям',
+        'Персональные конфиги под топ-кланы',
+        'Приоритет в очереди тикетов'
+      ]
+    },
+    {
+      id: 'lifetime',
+      name: 'Навсегда (Lifetime)',
+      durationDays: -1,
+      price: 1890,
+      originalPrice: 4990,
+      perDay: 'Вечный доступ',
+      badge: 'VIP CheatMine',
+      discountPercent: 62,
+      features: [
+        'Бессрочный доступ ко всем версиям Spectral',
+        '100% гарантия обходов CheatMine навсегда',
+        'VIP статус в Discord и приватный чат',
+        'Кастомные анимированные плащи Spectral',
+        'Прямая связь с разработчиками 24/7'
+      ]
+    }
+  ],
+  promos: {
+    'MEME': { discountPercent: 15, active: true },
+    'GIGACHAD': { discountPercent: 20, active: true },
+    'SKIBIDI': { discountPercent: 25, active: true },
+    'POPUSTIL': { discountPercent: 10, active: true },
+    'CHEATMINE': { discountPercent: 20, active: true }
+  },
+  orders: [],
+  licenses: [
+    {
+      key: 'SPECTRAL-DEMO-2026-PASS',
+      email: 'demo@spectralclient.su',
+      nickname: 'Gigachad_PvP',
+      productName: '30 дней (Пак Гигачада 🗿)',
+      productId: 'days-30',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      expiresAt: null,
+      status: 'ACTIVE'
+    }
+  ],
+  reviews: [
+    {
+      id: 1,
+      author: 'Gigachad_PvP 🗿',
+      rating: 5,
+      date: 'Сегодня, 16:42',
+      text: 'Зашёл на анархию CheatMine, включил Сигма Аура, попустил фулл-сет донатера за 3 секунды. Он написал в чат "ЖДИ ДОКС 😭", а я пошёл пить чай. 10 гигачадов из 10 🍷'
+    },
+    {
+      id: 2,
+      author: 'Скуф_Валера_ПВП 🍺',
+      rating: 5,
+      date: 'Вчера, 23:15',
+      text: 'Взял пивко, лёг на диван, нажал Right Shift — клиент сам лутает базы, бьёт школьников и свапает тотемы 0ms. Жена думает, что я киберспортсмен 👍🤣'
+    },
+    {
+      id: 3,
+      author: 'Школьник_2014 👶',
+      rating: 5,
+      date: '3 дня назад',
+      text: 'Админ телепортировался на проверку, я включил "Скибиди Додж" и облетел его вокруг. В итоге админ сам спросил промокод на скидку 🤡💀'
+    }
+  ],
+  stats: {
+    onlineUsers: 4200,
+    totalPurchases: 69420,
+    rating: 5.0,
+    version: 'Spectral Client v5.0 (Meme & Gigachad Edition)',
+    cheatmineStatus: 'ПОПУЩЕН НА 146% 🤡'
+  }
+};
+
+function readDb() {
+  try {
+    if (!fs.existsSync(DB_PATH)) {
+      fs.writeFileSync(DB_PATH, JSON.stringify(INITIAL_DATA, null, 2), 'utf-8');
+      return JSON.parse(JSON.stringify(INITIAL_DATA));
+    }
+    const content = fs.readFileSync(DB_PATH, 'utf-8');
+    return JSON.parse(content);
+  } catch (err) {
+    console.error('Error reading db:', err);
+    return INITIAL_DATA;
+  }
+}
+
+function writeDb(data) {
+  try {
+    fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+    return true;
+  } catch (err) {
+    console.error('Error writing db:', err);
+    return false;
+  }
+}
+
+function generateLicenseKey() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const chunk = () => Array.from({ length: 4 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+  return `SPECTRAL-${chunk()}-${chunk()}-${chunk()}`;
+}
+
+// Reset db.json to initial data with Spectral schema
+writeDb(INITIAL_DATA);
+
+module.exports = {
+  readDb,
+  writeDb,
+  generateLicenseKey
+};
