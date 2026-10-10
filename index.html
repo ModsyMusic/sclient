@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <title>Spectral Client — Мемный Клиент для Сервера CheatMine 🤣😂👍</title>
+  <meta name="description" content="Spectral Client — самый мемный и разрывной чит-клиент для сервера CheatMine (mc.cheatmine.ru). Античит попущен, админы плачут, 100% автототем под пивко 🍺🗿."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗿</text></svg>"/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Interactive canvas background with spectral & meme glowing particles -->
+  <canvas id="spectralCanvas" class="spectral-canvas"></canvas>
+
+  <!-- Ambient light blobs and grid -->
+  <div class="site-ambient-blur ambient-pulse"></div>
+  <div class="site-grid-pattern"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Floating Meme Sound Toggle & Secret Meme Button -->
+  <div class="meme-floating-bar">
+    <button type="button" class="meme-sound-toggle" id="memeSoundToggle" title="Включить звуковые мемные эффекты">
+      <span class="sound-icon">🔊</span>
+      <span class="sound-text">Звуки Мемов: <strong id="soundStateText" class="text-emerald">ВКЛ 🤣</strong></span>
+    </button>
+    <button type="button" class="meme-secret-btn" id="memeSecretBtn" title="Секретный бонус">
+      <span>🎁 СЕКРЕТ ДЛЯ ДОНАТЕРА 🤡</span>
+    </button>
+  </div>
+
+  <!-- Floating Pill Navbar (Expensive style + Memes) -->
+  <header class="navbar-wrapper">
+    <nav class="nav-pill" id="mainNav">
+      <div class="nav-sweep-track">
+        <div class="nav-sweep-glow"></div>
+      </div>
+
+      <div class="nav-logo">
+        <a href="#" class="logo-link">
+          <div class="logo-icon-wrap">
+            <span class="logo-emoji-spin">🗿</span>
+          </div>
+          <span class="logo-name">Spectral<span class="logo-dot">.meme</span></span>
+        </a>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <!-- Live server indicator for CheatMine -->
+      <div class="server-pill-status" title="Сервер CheatMine под нашим контролем">
+        <span class="radar-dot"><span class="radar-ping"></span></span>
+        <span class="status-label">CheatMine: <strong class="text-emerald">ПОПУЩЕН 🤡</strong></span>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">
+          <span>⚔️ Фичи</span>
+        </a>
+        <a href="#gui-preview" class="nav-link">
+          <span>📱 Меню</span>
+        </a>
+        <a href="#pricing" class="nav-link">
+          <span>💰 Бабки</span>
+        </a>
+        <a href="#verify" class="nav-link">
+          <span>🔑 Ключик</span>
+        </a>
+        <a href="#reviews" class="nav-link">
+          <span>📢 Базар</span>
+        </a>
+        <a href="https://t.me" target="_blank" rel="noopener" class="nav-link">
+          <span>💬 Телега</span>
+        </a>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-lang">
+        <button type="button" class="lang-btn"><span>🇷🇺 РУ</span></button>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <div class="nav-auth">
+        <a href="#verify" class="btn-auth shine-on-hover">
+          <span>👑 Кабинет</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow-blob"></div>
+    <div class="hero-secondary-blob"></div>
+
+    <div class="container hero-container">
+      <!-- Target Server Pill Badge -->
+      <div class="hero-server-tag reveal-fade">
+        <span class="tag-glow-dot"></span>
+        <span>ОДОБРЕНО ГИГАЧАДАМИ ДЛЯ <strong>CHEATMINE (MC.CHEATMINE.RU)</strong> 🗿🍷</span>
+        <span class="tag-badge-mini">146% BYPASS 🤡</span>
+      </div>
+
+      <h1 class="hero-title reveal-fade delay-1">
+        <span class="gradient-text spectral-flow">Spectral</span> — РАЗВАЛИВАЙ КАБИНЫ<br/>
+        <span class="text-white">НА CHEATMINE ПОД ПИВКО 🍺🤣</span>
+      </h1>
+
+      <p class="hero-description reveal-fade delay-2">
+        Зачем потеть на анархии и грызть клавиатуру? Включай <strong>Spectral Client</strong>, жми Right Shift и пей чаёк с печеньками, пока <strong>Сигма Аура</strong> раскидывает донатеров за 3 секунды 💀👍
+      </p>
+
+      <div class="hero-actions reveal-fade delay-3">
+        <a href="#pricing" class="btn-primary-glow btn-ripple" id="heroBuyBtn">
+          <span>Забрать Spectral (Бабки не проблема) 💸</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#gui-preview" class="btn-outline-pill btn-ripple" id="heroTestGuiBtn">
+          <span>Потыкать ClickGUI 🕹️</span>
+        </a>
+        <button type="button" class="btn-outline-pill btn-ripple" id="vineBoomBtn">
+          <span>Врубить БАСУХУ 💥</span>
+        </button>
+      </div>
+
+      <!-- Live Counters Bar with funny stats -->
+      <div class="hero-live-stats reveal-fade delay-3">
+        <div class="live-stat-card">
+          <div class="live-stat-val text-primary-300" id="statOnline">4,200</div>
+          <div class="live-stat-desc">Скуфов онлайн на CheatMine 🍺</div>
+        </div>
+        <div class="live-stat-card">
+          <div class="live-stat-val text-emerald" id="statPurchases">69,420+</div>
+          <div class="live-stat-desc">Попущенных донатеров 😭</div>
+        </div>
+        <div class="live-stat-card">
+          <div class="live-stat-val text-cyan">0.00 ms</div>
+          <div class="live-stat-desc">Свап тотема (Школьник бессмертен) 🧃</div>
+        </div>
+        <div class="live-stat-card">
+          <div class="live-stat-val text-purple">+1000 Aura</div>
+          <div class="live-stat-desc">Респект от админов CheatMine 🗿🍷</div>
+        </div>
+      </div>
+
+      <!-- 3D Perspective Showcase (Themes - Main ClickGUI - Cloud Configs) -->
+      <div class="hero-showcase-perspective reveal-fade delay-4">
+        <!-- Left tilted card -->
+        <div class="showcase-card card-left float-card-left">
+          <div class="card-glare"></div>
+          <div class="showcase-inner">
+            <div class="mockup-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="mockup-caption">Мемные темы визуалов</span>
+            </div>
+            <div class="mockup-body mockup-themes">
+              <div class="theme-chip active"><span class="chip-color purple"></span>🗿 Gigachad Violet</div>
+              <div class="theme-chip"><span class="chip-color cyan"></span>🍺 Скуф Neon Blue</div>
+              <div class="theme-chip"><span class="chip-color emerald"></span>🚽 Skibidi Anarchy Toxic</div>
+              <div class="theme-chip"><span class="chip-color pink"></span>🤡 Слёзы Админа (Blood)</div>
+              <div class="theme-preview-box">
+                <span class="preview-text">3D Chams • Шляпа Гигачада • Трейсеры Бабок</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center main card -->
+        <div class="showcase-card card-center float-card-center">
+          <div class="card-glare"></div>
+          <div class="showcase-inner">
+            <div class="mockup-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="mockup-caption">Spectral Client v5.0 [CheatMine Edition]</span>
+              <span class="mockup-fps animate-pulse-text">420 FPS 🚀</span>
+            </div>
+            <div class="mockup-body mockup-main">
+              <div class="mockup-nav-tabs">
+                <span class="m-tab active">CheatMine</span>
+                <span class="m-tab">Сигма</span>
+                <span class="m-tab">Анархия</span>
+                <span class="m-tab">Визуалы</span>
+                <span class="m-tab">Скуф</span>
+              </div>
+              <div class="mockup-modules-grid">
+                <div class="m-mod active animated-glow-border">
+                  <span class="m-mod-title">Сигма Аура 🗿</span>
+                  <span class="m-mod-sub">Уничтожение челов взглядом</span>
+                  <span class="m-switch on"><span class="switch-glow"></span></span>
+                </div>
+                <div class="m-mod active animated-glow-border">
+                  <span class="m-mod-title">Скибиди Додж 🚽</span>
+                  <span class="m-mod-sub">0% отдачи без киков античита</span>
+                  <span class="m-switch on"><span class="switch-glow"></span></span>
+                </div>
+                <div class="m-mod active animated-glow-border">
+                  <span class="m-mod-title">Бессмертный Школьник 🧃</span>
+                  <span class="m-mod-sub">AutoTotem 0ms без кулдауна</span>
+                  <span class="m-switch on"><span class="switch-glow"></span></span>
+                </div>
+                <div class="m-mod active animated-glow-border">
+                  <span class="m-mod-title">Рентген Бабок 💰</span>
+                  <span class="m-mod-sub">Просвечивание чужих сундуков</span>
+                  <span class="m-switch on"><span class="switch-glow"></span></span>
+                </div>
+              </div>
+
+              <!-- Interactive Clickable TargetHUD -->
+              <div class="mockup-target-hud" id="interactiveTargetHud" title="КЛИКНИ НА НЕГО, ЧТОБЫ ДАТЬ ЛЕЩА! 🤣">
+                <div class="target-avatar-anim" id="targetEmoji">🤡</div>
+                <div class="target-meta">
+                  <div class="target-meta-top">
+                    <span class="target-name">Жертва: <strong class="text-white" id="targetName">Донатер_На_Спавне</strong></span>
+                    <span class="target-hp-label" id="targetHpLabel">14.8 / 20 ❤</span>
+                  </div>
+                  <div class="target-health-bar">
+                    <div class="health-fill animate-health-pulse" id="targetHealthFill" style="width: 74%;"></div>
+                  </div>
+                </div>
+                <span class="target-click-hint">Кликни! 🥊</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right tilted card -->
+        <div class="showcase-card card-right float-card-right">
+          <div class="card-glare"></div>
+          <div class="showcase-inner">
+            <div class="mockup-header">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+              <span class="mockup-caption">Конфиги для нагиба</span>
+            </div>
+            <div class="mockup-body mockup-configs">
+              <div class="cfg-item active">
+                <div class="cfg-name">🗿 Gigachad_Rage.cfg</div>
+                <div class="cfg-author">by Скуф Валера (Фулл развал)</div>
+              </div>
+              <div class="cfg-item">
+                <div class="cfg-name">🍺 PodPivko_Grief.cfg</div>
+                <div class="cfg-author">by Топ 1 Клан CheatMine</div>
+              </div>
+              <div class="cfg-item">
+                <div class="cfg-name">😭 Plach_Admina.cfg</div>
+                <div class="cfg-author">by Легенда Анархии</div>
+              </div>
+              <div class="cfg-action">
+                <span class="cfg-badge-sync">● Синхронизация с базой мемов 100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fade overlay on 3D showcase -->
+        <div class="showcase-fade-mask"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Почему Spectral для CheatMine? -->
+  <section id="features" class="content-section">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="section-badge-text anim-badge">ОДОБРЕНО СКУФАМИ И ГИГАЧАДАМИ 🗿👍</span>
+        <h2 class="section-main-heading">Почему Spectral разрывает CheatMine? 🤣</h2>
+        <p class="section-sub-heading">Мы проверили все проверки античита cheatmine.ru и доказали, что против лома нет приёма.</p>
+      </div>
+
+      <!-- Feature Spotlight (Twister review + Live Aura Tuner) -->
+      <div class="feature-spotlight-grid">
+        <div class="spotlight-content reveal-on-scroll">
+          <h3 class="spotlight-title">
+            <span class="text-white">Буквально лучшая киллаура во Вселенной.</span><br/>
+            <span class="text-muted-highlight">Админы CheatMine вызывают скорую помощь 🚑</span>
+          </h3>
+          
+          <div class="spotlight-divider"></div>
+
+          <blockquote class="spotlight-quote">
+            «Я зашёл на анархию CheatMine, нажал одну кнопку и весь вражеский клан вышел с сервера со словами "ЭТО ЧИТЕР ПАМАГИТИ". Я просто сидел, пил Балтику девятку и слушал их слёзы в дискорде. 10 гигачадов из 10 🗿🍷»
+          </blockquote>
+
+          <div class="spotlight-author">
+            <p class="author-name">Скуф Валера 🍺</p>
+            <p class="author-role">Гроза спавна & Профессиональный грифер</p>
+          </div>
+
+          <div class="spotlight-buttons">
+            <a href="#pricing" class="btn-primary-glow btn-sm btn-ripple">
+              <span>Купить и кайфовать 🗿</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button type="button" class="btn-outline-pill btn-sm" id="laughSoundBtn">
+              <span>Посмеяться над админами 🤣</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="spotlight-card-visual reveal-on-scroll">
+          <div class="card-glare"></div>
+          <div class="visual-header">
+            <div class="visual-pill">
+              <span>🗿 spectral :: sigma aura engine</span>
+            </div>
+          </div>
+          <div class="visual-mockup-frame">
+            <div class="aura-preview-widget">
+              <div class="aura-header">
+                <span class="aura-title">Настройки Разноса CheatMine</span>
+                <span class="badge-bypass anim-pulse">Bypass: 146% 🤡</span>
+              </div>
+              <div class="aura-slider-row">
+                <span>Дальность удара: <strong>4.2 блока (Достаёт до соседней деревни) 🎯</strong></span>
+                <div class="mock-slider"><div class="slider-fill anim-shimmer-bar" style="width: 88%;"></div></div>
+              </div>
+              <div class="aura-slider-row">
+                <span>Скорость кликов: <strong>25 CPS (Пальцы отчима) ⚡</strong></span>
+                <div class="mock-slider"><div class="slider-fill anim-shimmer-bar" style="width: 95%;"></div></div>
+              </div>
+              <div class="aura-toggle-row">
+                <span>Пробитие щитов с ноги 🥋</span>
+                <span class="mock-check checked">✓ ВКЛ</span>
+              </div>
+              <div class="aura-toggle-row">
+                <span>Авто-слёзы в чат после килла 😭</span>
+                <span class="mock-check checked">✓ ВКЛ</span>
+              </div>
+            </div>
+          </div>
+          <div class="visual-bottom-fade"></div>
+        </div>
+      </div>
+
+      <!-- Magic Bento Grid (01, 02, 03) with interactive mouse spotlight -->
+      <div class="magic-bento-grid">
+        <div class="magic-bento-card bento-glow-card reveal-on-scroll">
+          <div class="card-glare"></div>
+          <div class="bento-inner">
+            <div class="bento-top">
+              <span class="bento-number">01 🤡</span>
+              <span class="bento-emoji-icon">🗿</span>
+            </div>
+            <h4 class="bento-title">Античит CheatMine Попущен</h4>
+            <p class="bento-desc">Наш обход делает вид, что ты играешь на сенсорном телефоне бабушки без мышки. Ни одного варна и кика.</p>
+          </div>
+        </div>
+
+        <div class="magic-bento-card bento-glow-card reveal-on-scroll">
+          <div class="card-glare"></div>
+          <div class="bento-inner">
+            <div class="bento-top">
+              <span class="bento-number">02 🧃</span>
+              <span class="bento-emoji-icon">⚡</span>
+            </div>
+            <h4 class="bento-title">Бессмертие Школьника</h4>
+            <p class="bento-desc">Свап тотемов 0ms. Враг сломает меч, клавиатуру и пальцы, пока ты спокойно стоишь и пьёшь сок Добрый.</p>
+          </div>
+        </div>
+
+        <div class="magic-bento-card bento-glow-card reveal-on-scroll">
+          <div class="card-glare"></div>
+          <div class="bento-inner">
+            <div class="bento-top">
+              <span class="bento-number">03 🍷</span>
+              <span class="bento-emoji-icon">👑</span>
+            </div>
+            <h4 class="bento-title">Интерфейс для Сигм</h4>
+            <p class="bento-desc">Красивее, чем фотка Гигачада в профиле. Все модули включаются с первого раза даже под шаурмой.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Возможности и Облачные конфиги -->
+  <section class="content-section cloud-section">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="badge-pill-pill anim-badge">
+          <span>ДЛЯ АНАРХИИ, ГРИФА И ОТДЫХА 🍺</span>
+        </span>
+        <h2 class="section-main-heading">Набор Юного Грифера на CheatMine 🤣</h2>
+        <p class="section-sub-heading">Все необходимые технологии XXI века для доминирования над сервером</p>
+      </div>
+
+      <div class="features-columns-grid">
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-blue anim-float-slow">🧩</div>
+          <h4>Fabric 1.16.5 - 1.20.4+</h4>
+          <p>Запуск за 2 секунды на любом калькуляторе. Поддерживает моды на котиков и шейдеры.</p>
+        </div>
+
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-amber anim-float-slow delay-1">⌨️</div>
+          <h4>Макросы под /near и /spawn</h4>
+          <p>Одна кнопка — и ты уже убежал со спавна с чужим сундуком и алмазами. Изи катка.</p>
+        </div>
+
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-indigo anim-float-slow delay-2">💬</div>
+          <h4>Чат с Гигачадами</h4>
+          <p>Встроенный чат юзеров Spectral. Делимся координатами кланов и мемами про админов.</p>
+        </div>
+
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-rose anim-float-slow delay-1">🎧</div>
+          <h4>Саппорт 24/7 (Не боты)</h4>
+          <p>Отвечаем быстрее, чем мама зовёт кушать. Поможем настроить конфиг даже твоей бабушке.</p>
+        </div>
+
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-emerald anim-float-slow delay-2">🚀</div>
+          <h4>+150 FPS Boost</h4>
+          <p>Игра идёт плавнее, чем мысли на уроке физики. До 400 FPS даже при 100 динамитах.</p>
+        </div>
+
+        <div class="feature-item reveal-on-scroll">
+          <div class="icon-circle icon-green anim-float-slow">🎨</div>
+          <h4>Плащи и Анимации 🗿</h4>
+          <p>Анимированные плащи Spectral, шляпы, светящиеся глаза и кастомные танцы персонажа.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive ClickGUI Simulator -->
+  <section id="gui-preview" class="content-section">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="section-badge-text anim-badge">ПОТЫКАЙ КНОПКИ 🕹️</span>
+        <h2 class="section-main-heading">Интерактивный симулятор ClickGUI</h2>
+        <p class="section-sub-heading">Включай тумблеры и слушай как сервер CheatMine капитулирует 🤣</p>
+      </div>
+
+      <div class="gui-sim-container reveal-on-scroll">
+        <div class="card-glare"></div>
+        <div class="gui-sim-header">
+          <div class="gui-sim-title">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span>Spectral Client v5.0 [Press RSHIFT on CheatMine]</span>
+          </div>
+          <div class="gui-sim-stat">
+            Активно читов: <strong id="activeModulesCount" class="text-primary-accent">4</strong>
+          </div>
+        </div>
+
+        <div class="gui-sim-categories">
+          <button class="gui-cat-btn active" data-tab="cheatmine">⚡ CheatMine</button>
+          <button class="gui-cat-btn" data-tab="combat">⚔️ Сигма ПвП</button>
+          <button class="gui-cat-btn" data-tab="movement">🏃 Бег Отчим</button>
+          <button class="gui-cat-btn" data-tab="render">👁️ Рентген</button>
+        </div>
+
+        <div class="gui-sim-modules">
+          <!-- CheatMine Tab -->
+          <div class="gui-tab-pane active" id="tab-cheatmine">
+            <div class="sim-module active" data-mod="Сигма Аура">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Сигма Аура 🗿</span>
+                <span class="sim-mod-desc">Раскидывает челов в радиусе 4 блоков взглядом</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module active" data-mod="Бессмертный Школьник">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Бессмертный Школьник 🧃 (AutoTotem 0ms)</span>
+                <span class="sim-mod-desc">Свапает тотемы быстрее скорости света</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module active" data-mod="Скибиди Додж">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Скибиди Додж 🚽 (0% Отдачи)</span>
+                <span class="sim-mod-desc">Стоишь как скала, пока в тебя стреляют из 10 луков</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Авто-Якорь Бабах">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Авто-Якорь Бабах 💥</span>
+                <span class="sim-mod-desc">Взрывает якоря возрождения с одного клика</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+          </div>
+
+          <!-- Combat Tab -->
+          <div class="gui-tab-pane" id="tab-combat">
+            <div class="sim-module active" data-mod="Киллаура Скуфа">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Киллаура Скуфа 🍺</span>
+                <span class="sim-mod-desc">Бьёт со спины, сбоку и сверху с критическими ударами</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Триггер-Бот">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Триггер-Бот "Без Палева" 🕵️</span>
+                <span class="sim-mod-desc">Бьёт только когда прицел наведён на нос врага</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Лук с Наводкой">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Лук с Самонаводкой 🏹</span>
+                <span class="sim-mod-desc">Стрела летит как ракета прямо в голову донатера</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+          </div>
+
+          <!-- Movement Tab -->
+          <div class="gui-tab-pane" id="tab-movement">
+            <div class="sim-module" data-mod="Спидран по Банам">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Спидран по Банам (Speed) ⚡</span>
+                <span class="sim-mod-desc">Бег со скоростью болида формулы 1 по воде и лаве</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Бег с Шаурмой">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Бег с Шаурмой (NoSlowdown) 🌯</span>
+                <span class="sim-mod-desc">Ешь золотые яблоки на полном ходу без замедления</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module active" data-mod="Вечный Спринт">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Вечный Спринт Без Одышки 🏃</span>
+                <span class="sim-mod-desc">Персонаж бегает во все стороны без усталости</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+          </div>
+
+          <!-- Render Tab -->
+          <div class="gui-tab-pane" id="tab-render">
+            <div class="sim-module active" data-mod="Рентген Брони">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Рентген Брони & 3D Chams 🩻</span>
+                <span class="sim-mod-desc">Видишь кто в незеритке, а кто бегает голышом</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Шляпа Сигмы">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Шляпа Сигмы (ChinaHat) 🎩</span>
+                <span class="sim-mod-desc">Неоновый конус над головой для +100 к стилю</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+            <div class="sim-module" data-mod="Трейсеры Бабок">
+              <div class="sim-mod-info">
+                <span class="sim-mod-name">Трейсеры Бабок (Линии к Сундукам) 💎</span>
+                <span class="sim-mod-desc">Прямые лазерные лучи к базам и спавнерам</span>
+              </div>
+              <div class="sim-mod-switch"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Pricing Section (Exact Expensive Client interactive table) -->
+  <section id="pricing" class="content-section pricing-section">
+    <div class="container">
+      <div class="section-title-wrap text-right">
+        <div class="flex-end">
+          <span class="badge-pill-pill anim-badge">
+            <span>ТАРИФЫ "БАБКИ НЕ ПРОБЛЕМА" 💸</span>
+          </span>
+        </div>
+        <h2 class="section-main-heading">Простые и честные цены 👍</h2>
+        <p class="section-sub-heading">Выбирай тариф, хватай промокод <strong class="promo-hint-pill" onclick="copyPromoCode('MEME')">MEME</strong> (-15%) или <strong class="promo-hint-pill" onclick="copyPromoCode('GIGACHAD')">GIGACHAD</strong> (-20%) и погнали!</p>
+      </div>
+
+      <!-- Pricing Plans List (Interactive rows) -->
+      <div class="pricing-rows-container reveal-on-scroll" id="pricingRowsList">
+        <button type="button" class="pricing-row-btn" data-plan="days-7">
+          <div class="row-grid">
+            <div class="row-col-left">
+              <span class="row-plan-title">7 дней 👶</span>
+              <span class="row-sub-tag">На пробу первокласснику</span>
+            </div>
+            <div class="row-col-mid">
+              <span class="row-per-day">28 ₽ /день (Дешевле сока)</span>
+            </div>
+            <div class="row-col-right">
+              <span class="row-price">199 ₽</span>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" class="pricing-row-btn active" data-plan="days-30">
+          <span class="row-active-bar"></span>
+          <div class="row-grid">
+            <div class="row-col-left">
+              <span class="row-plan-title">30 дней 🗿</span>
+              <span class="row-badge-pill popular">
+                <span>🔥 ВЫБОР ГИГАЧАДА</span>
+              </span>
+            </div>
+            <div class="row-col-mid">
+              <span class="row-per-day">13 ₽ /день (1/3 шаурмы)</span>
+            </div>
+            <div class="row-col-right">
+              <span class="row-price">399 ₽</span>
+              <span class="row-discount">−60% 🤣</span>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" class="pricing-row-btn" data-plan="days-90">
+          <div class="row-grid">
+            <div class="row-col-left">
+              <span class="row-plan-title">90 дней 🍺</span>
+              <span class="row-badge-pill pc">
+                <span>+1 ПК БРАТУХЕ</span>
+              </span>
+            </div>
+            <div class="row-col-mid">
+              <span class="row-per-day">9 ₽ /день</span>
+            </div>
+            <div class="row-col-right">
+              <span class="row-price">799 ₽</span>
+              <span class="row-discount">−72% 💀</span>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" class="pricing-row-btn" data-plan="days-180">
+          <div class="row-grid">
+            <div class="row-col-left">
+              <span class="row-plan-title">180 дней 💀</span>
+              <span class="row-badge-pill pc">
+                <span>+2 ПК КЛАНУ</span>
+              </span>
+            </div>
+            <div class="row-col-mid">
+              <span class="row-per-day">7 ₽ /день</span>
+            </div>
+            <div class="row-col-right">
+              <span class="row-price">1 199 ₽</span>
+              <span class="row-discount">−78% 🔥</span>
+            </div>
+          </div>
+        </button>
+
+        <button type="button" class="pricing-row-btn" data-plan="lifetime">
+          <div class="row-grid">
+            <div class="row-col-left">
+              <span class="row-plan-title">Навсегда 👑🍷</span>
+              <span class="row-badge-pill vip">
+                <span>ВЛАДЕЛЕЦ СЕРВЕРА</span>
+              </span>
+            </div>
+            <div class="row-col-mid">
+              <span class="row-per-day">Вечный кайф</span>
+            </div>
+            <div class="row-col-right">
+              <span class="row-price">1 890 ₽</span>
+              <span class="row-discount">−62% 👍</span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Pricing Summary Bottom Card -->
+      <div class="pricing-display-grid reveal-on-scroll">
+        <div class="display-price-meta">
+          <div class="meta-tag-line">
+            <span class="meta-period" id="displayPlanPeriod">30 ДНЕЙ (ПАКЕТ ГИГАЧАДА 🗿)</span>
+            <span class="meta-old-price" id="displayPlanOld">999 ₽</span>
+            <span class="meta-discount" id="displayPlanDiscount">−60%</span>
+          </div>
+
+          <div class="meta-giant-price text-glow-anim" id="displayPlanPrice">399 ₽</div>
+          <p class="meta-per-day" id="displayPlanPerDay">~13 ₽ /день (Дешевле доширака)</p>
+        </div>
+
+        <div class="display-checkout-box">
+          <ul class="display-features-list" id="displayFeaturesList">
+            <li><span class="bar-line"></span>Полный функционал Spectral Client</li>
+            <li><span class="bar-line"></span>CheatMine Anarchy & Grief Auto-Bypass</li>
+            <li><span class="bar-line"></span>Cloud Configs (лучшие сеты под CheatMine)</li>
+            <li><span class="bar-line"></span>Все обновления включены</li>
+            <li><span class="bar-line"></span>Приоритетная поддержка 24/7</li>
+          </ul>
+
+          <button type="button" class="btn-primary-glow btn-checkout-trigger btn-ripple" id="checkoutBtnTrigger">
+            <span>Оформить подписку 💸</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Gradient CTA Banner: Играй по-другому со Spectral -->
+  <section class="container cta-section-wrap reveal-on-scroll">
+    <div class="cta-gradient-card">
+      <div class="cta-radial-highlight"></div>
+      
+      <div class="cta-content">
+        <h2 class="cta-title">
+          Хватит терпеть на спавне CheatMine 😭<br/>
+          <span class="cta-sub">Стань Гигачадом со Spectral 🗿🍷</span>
+        </h2>
+
+        <p class="cta-desc">
+          Пока другие игроки часами копают шахты, ты заходишь, забираешь чужую базу и уходишь в закат под фонк.
+        </p>
+
+        <div class="cta-actions">
+          <a href="https://t.me" target="_blank" rel="noopener" class="btn-cta-support btn-ripple">
+            <span>Написать в Телегу 💬</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#pricing" class="btn-cta-buy btn-ripple">
+            <span>Купить Чит 💸</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="cta-pill-dash"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- License Verification Section -->
+  <section id="verify" class="content-section">
+    <div class="container max-w-850">
+      <div class="verify-card-obsidian reveal-on-scroll">
+        <div class="card-glare"></div>
+        <div class="section-title-wrap text-center mb-4">
+          <span class="badge-pill-pill anim-badge">
+            <span>ПРОВЕРКА ЛИЦЕНЗИИ ДЛЯ БРАТВЫ 🔑</span>
+          </span>
+          <h2 class="section-main-heading">Личный кабинет & Лаунчер 👍</h2>
+          <p class="section-sub-heading">Введи свой ключ, чтобы скачать лаунчер и разваливать кабины на CheatMine.</p>
+        </div>
+
+        <form id="verifyForm" class="verify-form-group">
+          <div class="verify-input-wrap">
+            <input type="text" id="verifyKeyInput" placeholder="SPECTRAL-XXXX-XXXX-XXXX" required>
+            <button type="submit" class="btn-primary-glow btn-sm btn-ripple" id="verifyBtn">
+              <span>Проверить ключ 🔍</span>
+            </button>
+          </div>
+        </form>
+
+        <p class="demo-key-caption">
+          Тестовый ключик для проверки: <code onclick="fillDemoKey()">SPECTRAL-DEMO-2026-PASS</code>
+        </p>
+
+        <div id="verifyResult" class="verify-result-box hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="content-section">
+    <div class="container">
+      <div class="section-title-wrap text-center">
+        <span class="section-badge-text anim-badge">РЕАЛЬНЫЙ БАЗАР 📢</span>
+        <h2 class="section-main-heading">Отзывы Довольных Скуфов и Гигачадов 🤣</h2>
+        <p class="section-sub-heading">Истории успеха игроков с сервера cheatmine.ru</p>
+      </div>
+
+      <div class="reviews-split-grid">
+        <div class="reviews-container reveal-on-scroll" id="reviewsContainer"></div>
+
+        <div class="review-create-card reveal-on-scroll">
+          <h4 class="create-card-title">Черкануть свой отзыв ✍️</h4>
+          <p class="create-card-desc">Расскажи как ты попустил админа или загриферил соседа</p>
+
+          <form id="addReviewForm">
+            <div class="form-field">
+              <label for="reviewAuthor">Твой ник на CheatMine</label>
+              <input type="text" id="reviewAuthor" placeholder="Например: Скуф_ПвП_228" required maxlength="32">
+            </div>
+
+            <div class="form-field">
+              <label>Оценка (Только 5 звёзд, иначе бан 🤣)</label>
+              <div class="star-rating">
+                <input type="radio" id="star5" name="rating" value="5" checked><label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="reviewText">Текст отзыва</label>
+              <textarea id="reviewText" rows="3" placeholder="Напиши как развалил клан и попил пивка..." required maxlength="500"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary-glow btn-block btn-ripple" id="submitReviewBtn">
+              <span>Запостить отзыв 🚀</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-brand">
+          <a href="#" class="footer-logo">
+            <span class="logo-emoji-spin">🗿</span>
+            <span>Spectral Client</span>
+          </a>
+          <p class="footer-brand-desc">Самый мемный и мощный клиент для сервера CheatMine. Одобрено гигачадами всея Руси.</p>
+        </div>
+
+        <div class="footer-col-nav">
+          <span class="footer-label">Продукт</span>
+          <a href="#verify">Скачать лаунчер 📥</a>
+          <a href="#pricing">Купить тариф 💸</a>
+          <a href="https://t.me" target="_blank" rel="noopener">Поддержка (Мемная) 💬</a>
+        </div>
+
+        <div class="footer-col-nav">
+          <span class="footer-label">Документы</span>
+          <a href="#">Пользовательское соглашение</a>
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Политика возврата шаурмы</a>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom-row">
+        <div class="footer-legal">
+          <p class="copyright">© 2026 – <span class="highlight">Spectral Client (CheatMine Edition)</span>. Все права защищены Гигачадами 🗿.</p>
+          <p class="disclaimer">Spectral Client не связан с администрацией CheatMine, Mojang или Microsoft. Любые совпадения случайны 🤣.</p>
+        </div>
+
+        <div class="footer-socials">
+          <a href="https://discord.gg" target="_blank" rel="noopener" class="social-link">
+            <span>👾 Discord</span>
+          </a>
+          <span class="social-dot">·</span>
+          <a href="https://t.me" target="_blank" rel="noopener" class="social-link">
+            <span>✈️ Telegram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Secret Meme Easter Egg Modal -->
+  <dialog id="secretMemeModal" class="modal-dialog">
+    <div class="modal-card meme-easter-card">
+      <div class="card-glare"></div>
+      <div class="modal-header">
+        <div>
+          <span class="modal-badge-pill">СЕКРЕТНЫЙ ГИГАЧАД-БОНУС 🗿</span>
+          <h3 class="modal-title">ТЫ НАШЁЛ СЕКРЕТКУ! 🤣🎉</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeSecretBtn">✕</button>
+      </div>
+
+      <div class="secret-meme-content">
+        <div class="meme-huge-avatar animate-bounce-slow">🗿🍷</div>
+        <h4>ПОЗДРАВЛЯЕМ! ТЫ ОФИЦИАЛЬНО ГИГАЧАД!</h4>
+        <p>Админы CheatMine в панике бегут с сервера. Забирай секретный промокод на скидку 20%:</p>
+        <div class="secret-code-pill" onclick="copyPromoCode('GIGACHAD')">
+          <code>GIGACHAD</code>
+          <span>(Кликни для копирования)</span>
+        </div>
+        <button type="button" class="btn-primary-glow btn-block btn-ripple" id="claimSecretBtn">
+          <span>Применить скидку и купить Spectral 💸</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Modal: Checkout / Purchase -->
+  <dialog id="checkoutModal" class="modal-dialog">
+    <div class="modal-card">
+      <div class="card-glare"></div>
+      <div class="modal-header">
+        <div>
+          <span class="modal-badge-pill" id="modalPlanBadge">CheatMine Edition 🗿</span>
+          <h3 id="modalPlanTitle" class="modal-title">Оформление подписки</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeCheckoutBtn">✕</button>
+      </div>
+
+      <!-- Checkout Form -->
+      <div id="checkoutFormState">
+        <div class="checkout-summary-box">
+          <div class="summary-line">
+            <span>Тариф Spectral:</span>
+            <strong id="modalPlanName">30 дней 🗿</strong>
+          </div>
+          <div class="summary-line">
+            <span>К оплате:</span>
+            <div class="price-val-wrap">
+              <span class="old-val hidden" id="modalOriginalPrice">999 ₽</span>
+              <span class="current-val" id="modalPrice">399 ₽</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="purchaseForm" class="purchase-form">
+          <input type="hidden" id="orderProductId" value="days-30">
+
+          <div class="form-field">
+            <label for="orderNickname">Никнейм на CheatMine <span class="req">*</span></label>
+            <input type="text" id="orderNickname" placeholder="Например: Gigachad_PvP" required>
+          </div>
+
+          <div class="form-field">
+            <label for="orderEmail">Email для получения ключа <span class="req">*</span></label>
+            <input type="email" id="orderEmail" placeholder="your-email@example.com" required>
+          </div>
+
+          <div class="form-field">
+            <label for="orderPromo">Мемный промокод</label>
+            <div class="promo-input-row">
+              <input type="text" id="orderPromo" placeholder="MEME (-15%) или GIGACHAD (-20%)" style="text-transform: uppercase;">
+              <button type="button" class="btn-outline-pill btn-sm btn-ripple" id="applyPromoBtn">Применить</button>
+            </div>
+            <div id="promoFeedback" class="promo-feedback"></div>
+          </div>
+
+          <div class="form-field">
+            <label>Способ оплаты</label>
+            <div class="payment-methods-grid">
+              <label class="pay-option selected">
+                <input type="radio" name="paymentMethod" value="sbp" checked>
+                <span class="pay-name">📱 СБП (0% ком.)</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="paymentMethod" value="card">
+                <span class="pay-name">💳 Карта МИР / РФ</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="paymentMethod" value="crypto">
+                <span class="pay-name">⚡ USDT Crypto</span>
+              </label>
+              <label class="pay-option">
+                <input type="radio" name="paymentMethod" value="yoomoney">
+                <span class="pay-name">🟣 ЮMoney</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary-glow btn-block btn-ripple" id="paySubmitBtn">
+            <span>Оплатить и получить ключик 💸</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Checkout Success View -->
+      <div id="checkoutSuccessState" class="checkout-success hidden">
+        <div class="success-icon anim-bounce">🎉🗿</div>
+        <h3 class="success-title">Лицензия Spectral активирована!</h3>
+        <p class="success-desc">Ключ привязан к аккаунту <strong id="successNick"></strong>. Админы CheatMine уже плачут 😭</p>
+
+        <div class="license-key-box">
+          <span class="key-label">ТВОЙ ЛИЦЕНЗИОННЫЙ КЛЮЧ:</span>
+          <div class="key-row">
+            <code id="successKeyDisplay">SPECTRAL-XXXX-XXXX-XXXX</code>
+            <button type="button" class="btn-outline-pill btn-sm" id="copyKeyBtn">Скопировать 📋</button>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="#" id="successDownloadBtn" class="btn-primary-glow btn-block btn-ripple">
+            <span>📥 Скачать лаунчер Spectral Client [CheatMine]</span>
+          </a>
+          <button type="button" class="btn-outline-pill btn-block" id="finishSuccessBtn">Закрыть окно</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Stack -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
